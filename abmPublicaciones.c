@@ -5,9 +5,10 @@
 #include "abmCliente.h"
 #include "getsValids.h"
 
+
 static int proximoId(void);
 static int buscarLugarLibre(Publicacion* array,int size);
-static int buscarPorId(Publicacion* array,int size, int id);
+static int buscarPorIdAviso(Publicacion* array,int size, int id);
 
 int abmPublicacion_init(Publicacion *array, int size)
 {
@@ -24,7 +25,7 @@ int abmPublicacion_init(Publicacion *array, int size)
     return retorno;
 }
 
-int abmPublicacion_alta(Publicacion *array,int size)
+int abmPublicacion_alta(Publicacion *array, int size)
 {
     int retorno = -1;
     int i;
@@ -37,7 +38,7 @@ int abmPublicacion_alta(Publicacion *array,int size)
         i = buscarLugarLibre(array,size);
         if(i >= 0)
         {
-          if(!get_validInt("\nIngrese el ID del Cliente","\nID Invalido",&idCliente,0,100,2))
+          if(!get_validInt("\nIngrese el ID del Cliente","\nID Invalido",&idCliente,0,100,3))
             {
                 if(!get_validInt("\nIngrese el numero de rubro:\n(1)Clasificados\n(2)Inmuebles\n(3)Solos y solas","\nOpcion no valida",&rubro,1,3,3))
                 {
@@ -50,6 +51,7 @@ int abmPublicacion_alta(Publicacion *array,int size)
                         array[i].idAviso = proximoId();
                         array[i].isEmpty = 0;
                         array[i].estado=1;
+                        printf("El ID del aviso es: %d\n", array[i].idAviso);
                     }
                 }
 
@@ -70,7 +72,7 @@ int abmPublicacion_alta(Publicacion *array,int size)
 
 
 
-static int buscarPorId(Publicacion* array,int size, int id)
+static int buscarPorIdAviso(Publicacion* array,int size, int id)
 {
     int retorno = -1;
     int i;
@@ -89,17 +91,38 @@ static int buscarPorId(Publicacion* array,int size, int id)
     return retorno;
 }
 
+
+
+
+int abmPublicacion_baja(Publicacion *array, int size, int id)
+{
+    int i;
+    int retorno=-1;
+
+    if(size > 0 && array != NULL)
+    {
+        for(i=0;i<size;i++)
+        {
+            if(id==array[i].idCliente && !array[i].isEmpty)
+            {
+                array[i].isEmpty=1;
+                retorno=0;
+            }
+        }
+    }
+    return retorno;
+}
+
 int abmPublicacion_Pausar(Publicacion *array, int size, int id){
 
 int retorno =-1;
 int indiceAPausear;
-indiceAPausear=buscarPorId(array,size,id);
+indiceAPausear=buscarPorIdAviso(array,size,id);
 
 if(size > 0 && array != NULL)
     {
         if(indiceAPausear >= 0)
         {
-            if(array[indiceAPausear].estado)
             retorno=0;
             array[indiceAPausear].estado=0;
         }
@@ -111,61 +134,14 @@ int abmPublicacion_Reanudar(Publicacion *array, int size, int id){
 
 int retorno =-1;
 int indiceAReanudar;
-indiceAReanudar=buscarPorId(array,size,id);
+indiceAReanudar=buscarPorIdAviso(array,size,id);
 
 if(size > 0 && array != NULL)
     {
         if(indiceAReanudar >= 0)
         {
-            if(!array[indiceAReanudar].estado)
             retorno=0;
             array[indiceAReanudar].estado=1;
-        }
-    }
-    return retorno;
-}
-
-
-int abmPublicacion_mostrarClientes(Cliente *arrayCliente, Publicacion *arrayPublicacion, int sizeCliente, int sizePublicacion)
-{
-    int retorno = -1;
-    int i;
-    int contadorPublicaciones=0;
-    if((sizeCliente> 0 && arrayCliente != NULL)&& (sizePublicacion> 0 && arrayPublicacion!=NULL))
-    {
-        for(i=0;i<sizePublicacion;i++){
-                if(arrayCliente[i].idCliente==arrayPublicacion[i].idCliente){
-                    contadorPublicaciones++;
-                }
-
-
-        }
-        retorno = 0;
-        for(i=0;i<sizeCliente;i++)
-        {
-            if(!arrayCliente[i].isEmpty)
-                printf("[RELEASE] - %d - %s - %s - %d - %d\n",arrayCliente[i].idCliente, arrayCliente[i].nombre,arrayCliente[i].apellido,arrayCliente[i].cuil, contadorPublicaciones);
-        }
-    }
-    return retorno;
-}
-
-
-int abmPublicacion_mostrarPublicacion(Cliente *arrayCliente, Publicacion *arrayPublicacion, int size)
-{
-    int retorno = -1;
-    int i;
-    int indiceCliente;
-    int CuitCliente;
-
-    if(size > 0 && arrayPublicacion != NULL && arrayCliente != NULL)
-    {
-        retorno = 0;
-        for(i=0;i<size;i++)
-        {
-            indiceCliente=abmCliente_buscarPorId(arrayCliente,size,arrayPublicacion[i].idCliente);
-            if(!arrayPublicacion[i].isEmpty)
-                printf(" CUITCLIENTE: %d\nRUBRO:%d\nAVISO:%s\nIDAVISO:%d\nESTADO:%d\n",arrayCliente[indiceCliente].cuil, arrayPublicacion[i].rubro,arrayPublicacion[i].texto,arrayPublicacion[i].idAviso, arrayPublicacion[i].estado);
         }
     }
     return retorno;
