@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1525998873 source:d:\gustavodm\parcial1lab1\abmpublicaciones.c
+1525995578 source:d:\gustavodm\parcial1lab1\abmpublicaciones.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -15,70 +15,22 @@
 
 1525980764 d:\gustavodm\parcial1lab1\getsvalids.h
 
-1525996964 source:d:\gustavodm\parcial1lab1\main.c
+1525996071 source:d:\gustavodm\parcial1lab1\main.c
 	<stdio.h>
 	<stdlib.h>
 	"abmCliente.h"
 	"abmPublicaciones.h"
 	"getsValids.h"
 
-1525996890 d:\gustavodm\parcial1lab1\abmcliente.h
+1525994279 d:\gustavodm\parcial1lab1\abmcliente.h
 
-1525996870 source:d:\gustavodm\parcial1lab1\abmcliente.c
+1525996049 source:d:\gustavodm\parcial1lab1\abmcliente.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	"abmCliente.h"
 	"getsValids.h"
 
-1525999050 d:\gustavodm\parcial1lab1\abmpublicaciones.h
+1525995477 d:\gustavodm\parcial1lab1\abmpublicaciones.h
 	"abmCliente.h"
-
-1526500563 source:c:\users\liliana\desktop\programacion\parcial1lab1\abmcliente.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"abmCliente.h"
-	"getsValids.h"
-
-1526500553 c:\users\liliana\desktop\programacion\parcial1lab1\abmcliente.h
-
-1526500456 c:\users\liliana\desktop\programacion\parcial1lab1\getsvalids.h
-
-1526498801 source:c:\users\liliana\desktop\programacion\parcial1lab1\abmpublicaciones.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"abmPublicaciones.h"
-	"abmCliente.h"
-	"getsValids.h"
-
-1526484905 c:\users\liliana\desktop\programacion\parcial1lab1\abmpublicaciones.h
-	"abmCliente.h"
-
-1526500418 source:c:\users\liliana\desktop\programacion\parcial1lab1\getsvalids.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"getsValids.h"
-
-1526500150 source:c:\users\liliana\desktop\programacion\parcial1lab1\main.c
-	<stdio.h>
-	<stdlib.h>
-	"abmCliente.h"
-	"abmPublicaciones.h"
-	"informes.h"
-	"getsValids.h"
-
-1526499423 source:c:\users\liliana\desktop\programacion\parcial1lab1\informes.c
-	<stdio.h>
-	<stdlib.h>
-	<string.h>
-	"abmPublicaciones.h"
-	"abmCliente.h"
-	"getsValids.h"
-
-1526498329 c:\users\liliana\desktop\programacion\parcial1lab1\informes.h
-	"abmCliente.h"
-	"abmPublicaciones.h"
 

@@ -41,7 +41,7 @@ int abmCliente_alta(Cliente *array,int size)
             {
                 if(!get_validLetras("\nIngrese su apellido? ","\nEso no es un apellido","El maximo es 50",apellido,50,3))
                 {
-                    if(!get_validInt("\nIngrese su Cuil?(sin usar guiones) ","\nEso no es un Cuil",&cuil,0,99999999,2))
+                    if(!get_validInt("\nIngrese su Cuil?(sin usar guiones) ","\nEso no es un Cuil",&cuil,0,100,2))
                     {
                         retorno = 0;
                         strcpy(array[i].nombre,nombre);
@@ -102,18 +102,18 @@ int abmCliente_baja(Cliente *array,int size, int id)
 }
 
 
-int abmCliente_mostrar(Cliente *array, int id)
+int abmCliente_mostrar(Cliente *array,int limite)
 {
-
     int retorno = -1;
     int i;
-    i=id;
-    if(array != NULL)
+    if(limite > 0 && array != NULL)
     {
         retorno = 0;
-
+        for(i=0;i<limite;i++)
+        {
             if(!array[i].isEmpty)
-                printf("[RELEASE] - %d - %s - %s - %d - %d\n",array[i].idCliente, array[i].nombre,array[i].apellido,array[i].cuil, array[i].isEmpty);
+                printf("[RELEASE] - %d - %s - %f - %d - %d\n",array[i].idCliente, array[i].nombre,array[i].apellido,array[i].cuil, array[i].isEmpty);
+        }
     }
     return retorno;
 }
@@ -161,6 +161,7 @@ int abmCliente_modificacion(Cliente* array, int size, int id)
     }
     return retorno;
 }
+
 
 
 static int buscarLugarLibre(Cliente *array,int size)

@@ -19,7 +19,6 @@ int get_stringFlotantes(char *mensaje,char *input);
 int get_stringAlfaNumerico(char *mensaje,char *input);
 
 int get_validInt(char *requestMessage,char *errorMessage, int* input,int lowLimit, int hiLimit,int attemps);
-int get_validLong(char *requestMessage,char *errorMessage, long* input,long lowLimit, long hiLimit,int attemps);
 int get_validLetras(char *requestMessage,char *errorMessage, char *errorMessageLenght,char *input, int maxLenght,int attemps);
 int get_validFloat(char *requestMessage,char *errorMessage, float* input,int lowLimit, int hiLimit,int attemps);
 int get_validAlfaNumerico(char *requestMessage,char *errorMessage, char *errorMessageLenght,char *input, int maxLenght,int attemps);

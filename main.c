@@ -2,10 +2,9 @@
 #include <stdlib.h>
 #include "abmCliente.h"
 #include "abmPublicaciones.h"
-#include "informes.h"
 #include "getsValids.h"
-#define CANTIDADCLIENTES 100
-#define CANTIDADAVISOS 1000
+#define CANTIDADCLIENTES 9
+#define CANTIDADAVISOS 4
 
 int main()
 {
@@ -17,8 +16,9 @@ int main()
 
    do
     {
-       get_validInt("\nMENU\n\n1:Alta Cliente\n2:Modificar Cliente\n3:Baja cliente\n4:Publicar aviso\n5:Pausear Aviso\n6:Reanudar aviso\n","Ingrese una opcion correcta",&menu,0,10,2);
+       get_validInt("MENU\n\n1:Alta Cliente\n2:Modificar Cliente\n3:Baja cliente\n4:Publicar aviso\n5:Pausear Aviso\n6:Reanudar aviso\n","Ingrese una opcion correcta",&menu,0,9,2);
        fflush(stdin);
+       printf("%d",menu);
 
         switch(menu)
         {
@@ -27,50 +27,35 @@ int main()
             abmCliente_alta(clientes, CANTIDADCLIENTES);
             break;
         case 2:
-            get_validInt("Ingrese el ID del cliente: ","Solo numeros", &idCliente, 0, CANTIDADCLIENTES, 3);
-            fflush(stdin);
-            abmCliente_mostrar(clientes, idCliente);
+            printf("Ingrese un ID: ");
+            scanf("%d", &idCliente);
             abmCliente_modificacion(clientes, CANTIDADCLIENTES, idCliente);
-            abmCliente_mostrar(clientes, idCliente);
             break;
         case 3:
-            get_validInt("Ingrese un ID: ","Solo numeros", &idCliente, 0, CANTIDADCLIENTES, 3);
-            fflush(stdin);
+            printf("Ingrese un ID: ");
+            scanf("%d", &idCliente);
             abmCliente_baja(clientes, CANTIDADCLIENTES, idCliente);
-            abmPublicacion_baja(publicaciones, CANTIDADAVISOS, idCliente);
-
             break;
         case 4:
-            abmPublicacion_alta(publicaciones,CANTIDADAVISOS);
+            abmPublicacion_alta(publicaciones, CANTIDADAVISOS);
             break;
         case 5:
-            get_validInt("Ingrese el ID de la publicacion: ","Solo numeros", &idPublicacion, 0, CANTIDADAVISOS, 3);
-            fflush(stdin);
+            printf("Ingrese un ID: ");
+            scanf("%d", &idPublicacion);
             abmPublicacion_Pausar(publicaciones, CANTIDADAVISOS, idPublicacion);
-
             break;
         case 6:
-            get_validInt("Ingrese el ID de la publicacion: ","Solo numeros", &idPublicacion, 0, CANTIDADAVISOS, 3);
-            fflush(stdin);
+            printf("Ingrese un ID: ");
+            scanf("%d", &idPublicacion);
             abmPublicacion_Reanudar(publicaciones, CANTIDADAVISOS,idPublicacion);
             break;
         case 7:
-            informes_mostrarClientes(clientes,publicaciones,CANTIDADCLIENTES,CANTIDADAVISOS);
-            break;
+            abmPublicacion_mostrarClientes(clientes,publicaciones,CANTIDADCLIENTES,CANTIDADAVISOS);
         case 8:
-            informes_mostrarPublicacion(clientes, publicaciones, CANTIDADAVISOS,CANTIDADCLIENTES);
-            break;
-        case 9:
-            informes_ClienteMaxPub(publicaciones, clientes,CANTIDADAVISOS, CANTIDADCLIENTES);
-            break;
-        case 10:
-            informes_publicacionesPorRubro(publicaciones,CANTIDADAVISOS);
-            break;
+            abmPublicacion_mostrarPublicacion(clientes, publicaciones, CANTIDADAVISOS);
+
             }
-
-
-
-    }while(menu !=0);
+    }while(menu !=9);
 
         return 0;
     }
